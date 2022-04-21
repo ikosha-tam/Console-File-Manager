@@ -1,3 +1,6 @@
+import os
+
+
 
 budget = 0
 # history = []
@@ -34,35 +37,39 @@ while True:
 
     # print(f'Ваш счет: {budget}')
 
-    if choice == '1':
+    if choice == '1':       # Создать папку
         print(choice)
         # sum = int(input('Введите сумму для пополнения: '))
         # budget += sum
-    elif choice == '2':
+    elif choice == '2':     # Удалить (файл/папку)
         print(choice)
         # budget = purchase(budget)
-    elif choice == '3':
+    elif choice == '3':     # Копировать (файл/папку)
         print(choice)
         # for item, cost in history:
         #     print(f'{item}:\t {cost} руб.')
         # print(history)
-    elif choice == '4':
+    elif choice == '4':     #Просмотр содержимого рабочей директории'
         print(choice)
-    elif choice == '5':
+        print('Текущая папка: ',os.getcwd())
+        print(os.listdir())
+    elif choice == '5':     # Посмотреть только папки
         print(choice)
-    elif choice == '6':
+        # print('Текущая папка: ', os.getcwd())
+        # print(os.listdir())
+    elif choice == '6':     # Посмотреть только файлы
         print(choice)
-    elif choice == '7':
+    elif choice == '7':     # Просмотр информации об операционной системе
         print(choice)
-    elif choice == '8':
+    elif choice == '8':     # Создатель программы
         print(choice)
-    elif choice == '9':
+    elif choice == '9':     # Играть в викторину
         print(choice)
-    elif choice == '10':
+    elif choice == '10':    # Мой банковский счет
         print(choice)
-    elif choice == '11':
+    elif choice == '11':    #Смена рабочей директории (*необязательный пункт)
         print(choice)
-    elif choice == '12':
+    elif choice == '12':    # Выход
         break
     else:
         print('Неверный пункт меню')

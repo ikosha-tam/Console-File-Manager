@@ -39,11 +39,23 @@ while True:
 
     if choice == '1':       # Создать папку
         print(choice)
+        name_dir = input('Имя новой папки: ')
+        if not os.path.exists(name_dir):
+            os.mkdir(name_dir)
+        else:
+            print('Папка уже существует!')
         # sum = int(input('Введите сумму для пополнения: '))
         # budget += sum
     elif choice == '2':     # Удалить (файл/папку)
         print(choice)
+        name_dir = input('Имя папки для удаления: ')
+        if os.path.exists(name_dir):
+            os.rmdir(name_dir)
+        else:
+            print('Папка для удаления отсутствует!')
         # budget = purchase(budget)
+
+
     elif choice == '3':     # Копировать (файл/папку)
         print(choice)
         # for item, cost in history:

@@ -34,15 +34,14 @@ import shutil
 import sys
 import os
 import getpass
-import platform
 
 budget = 0
 
 while True:
     print('-' * 100)
     print('1. Создать папку')  # Сделано
-    print('2. Удалить (файл/папку)')  # !Сделано для папки
-    print('3. Копировать (файл/папку)')
+    print('2. Удалить (файл/папку)')  # Сделано
+    print('3. Копировать (файл/папку)')  # Сделано
     print('4. Просмотр содержимого рабочей директории')  # Сделано
     print('5. Посмотреть только папки')  # Сделано
     print('6. Посмотреть только файлы')  # Сделано
@@ -61,18 +60,23 @@ while True:
         else:
             print('Папка уже существует!')
     elif choice == '2':  # Удалить (файл/папку)
-        name_dir = input('Имя папки для удаления: ')
-        if os.path.exists(name_dir):
-            os.rmdir(name_dir)
+        name_file_dir = input('Имя файл/папки для удаления: ')
+        if os.path.isfile(name_file_dir):
+            os.remove(name_file_dir)
+            print("Успешно")
         else:
-            print('Папка для удаления отсутствует!')
+            print("Файл не существует!")
+        if os.path.isdir(name_file_dir):
+            shutil.rmtree(name_file_dir)
+            print("Успешно")
+        else:
+            print("Папка не существует!")
     elif choice == '3':  # Копировать (файл/папку)
-        choise_operation = input('копировать файл (f), папку (d)?')
-        name = input('Название папки/файла')
-        name_new = input('Новое название папки/файла')
-        if choise_operation == 'f':
+        name = input('Название папки/файла: ')
+        name_new = input('Новое название папки/файла: ')
+        if os.path.isfile(name):
             shutil.copy(name, name_new)
-        if choise_operation == 'd':
+        if os.path.isdir(name):
             shutil.copytree(name, name_new)
     elif choice == '4':  # Просмотр содержимого рабочей директории'
         print('*** Cодержимого рабочей директории ***')

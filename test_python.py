@@ -1,12 +1,6 @@
-"""
-В модуле написать тесты для встроенных функций filter, map, sorted,
-
- а также для функций из библиотеки math: pi, sqrt, pow, hypot.
- Чем больше тестов на каждую функцию - тем лучше
-"""
-
 import math
 
+# Тесты для встроенных функций filter, map, sorted
 def test_filter():
     mixed = ['мак', 'рис', 'мак', 'мак', 'просо', 'мак', 'пшено', 'горох', 'ячмень', 'мак']
     assert list(filter(lambda x: x == 'мак', mixed)) == ['мак', 'мак', 'мак', 'мак', 'мак']
@@ -15,9 +9,9 @@ def test_filter():
     assert tuple(filter(lambda x: x < 0, numbers_tuple)) == (-2, -1)
 
 
+# Тесты для функций из библиотеки math: pi, sqrt, pow, hypot
 def test_pi():
     assert math.pi == 3.141592653589793
-
 
 def test_sqrt():
     assert math.sqrt(144) == 12
@@ -30,7 +24,6 @@ def test_pow():
     assert math.pow(10, 3) == 1000
     assert math.pow(10, -3) == 0.001
     assert math.pow(3, 3.5) == 46.76537180435969
-
 
 def test_hypot():
     assert math.hypot(4, 1) == 4.123105625617661

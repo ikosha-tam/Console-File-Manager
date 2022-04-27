@@ -65,7 +65,7 @@ while True:
     elif choice == '7':  # Просмотр информации об операционной системе
         print(sys.platform)
     elif choice == '8':  # Создатель программы
-        print(getpass.getuser())
+        print('Dmitry I')
     elif choice == '9':  # Играть в викторину
         my_module.victory()
     elif choice == '10':  # Мой банковский счет

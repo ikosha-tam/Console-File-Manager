@@ -2,6 +2,7 @@ import math
 
 
 # Тесты для встроенных функций filter, map, sorted
+
 def test_filter():
     mixed = ['мак', 'рис', 'мак', 'мак', 'просо', 'мак', 'пшено', 'горох', 'ячмень', 'мак']
     assert list(filter(lambda x: x == 'мак', mixed)) == ['мак', 'мак', 'мак', 'мак', 'мак']
@@ -22,6 +23,7 @@ def test_sorted():
 
 
 # Тесты для функций из библиотеки math: pi, sqrt, pow, hypot
+
 def test_pi():
     assert math.pi == 3.141592653589793
 

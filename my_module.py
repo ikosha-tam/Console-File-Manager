@@ -116,3 +116,22 @@ def my_bank_account():
             break
         else:
             print('Неверный пункт меню')
+
+def separator(count=30):
+    """
+    Функция разделитель
+    :param count: количество звездочек
+    :return: красивый разделитель
+    """
+    return '*' * count
+
+def date_to_str(date):
+    """
+    Функция приводит дату к текстовому виду
+    :param date: дата в формате dd.mm.yyyy
+    :return: дата в текстовом виде
+    """
+    day, month, year = date.split('.')
+    result = f'{days[day]} {months[month]} {year} года'
+    return result
+

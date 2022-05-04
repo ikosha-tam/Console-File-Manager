@@ -19,6 +19,7 @@ while True:
     print('11. Смена рабочей директории (*необязательный пункт)')
     print('12. Выход')
     choice = input('Выберите пункт меню: ')
+    print('-' * 100)
     if choice == '1':  # Создать папку
         name_dir = input('Имя новой папки: ')
         if not os.path.exists(name_dir):

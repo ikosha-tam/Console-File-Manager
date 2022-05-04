@@ -120,11 +120,13 @@ def my_bank_account():
 
     while True:
         print(f'Ваш счет: {budget}')
+        print('-' * 100)
         print('1. пополнение счета')
         print('2. покупка')
         print('3. история покупок')
         print('4. выход')
         choice = input('Выберите пункт меню: ')
+        print('-' * 100)
         if choice == '1':
             sum = int(input('Введите сумму для пополнения: '))
             budget += sum

@@ -163,3 +163,28 @@ def date_to_str(date):
     day, month, year = date.split('.')
     result = f'{days[day]} {months[month]} {year} года'
     return result
+
+
+def save_workdir_to_file():
+    '''
+    Функция сохраняет содержимое рабочей директории в файл в формате:
+        files: victory.py, bill.py, main.py
+        dirs: modules, packages
+    :return:
+    '''
+    list_dir = []
+    list_file = []
+    list_file_dir = os.listdir()
+    for item in list_file_dir:
+        if os.path.isfile(item):
+            list_file.append(item)
+        elif os.path.isdir(item):
+            list_dir.append(item)
+    with open('listdir.txt', 'w') as f:
+        f.write('files: ')
+        for item in list_file:
+            f.write(f'{item}, ')
+        f.write('\n')
+        f.write('dirs: ')
+        for item in list_dir:
+            f.write(f'{item}, ')

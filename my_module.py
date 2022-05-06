@@ -1,4 +1,6 @@
 import random
+import os
+import json
 
 def victory():
     birthdays_dict = {
@@ -64,7 +66,7 @@ def victory():
     random_name_list = random.sample(name_list, 5)
     print('Вводите дату в формате (dd.mm.yyyy)')
     number_correct_answers = 0
-    number_incorrect_answers =0
+    number_incorrect_answers = 0
     repit_quiz = 'Y'
     while repit_quiz == 'Y':
         for quest in random_name_list:
@@ -75,19 +77,37 @@ def victory():
             else:
                 data = birthdays_dict[quest]
                 day, month, year = data.split('.')
-                print('    НЕВЕРНО! Правильный ответ:',days[day], months[month], year, 'года')
+                print('    НЕВЕРНО! Правильный ответ:', days[day], months[month], year, 'года')
                 number_incorrect_answers += 1
-        print('-'*60)
-        print('количество правильных ответов -',number_correct_answers)
-        print('количество неверных ответов -',number_incorrect_answers)
+        print('-' * 60)
+        print('количество правильных ответов -', number_correct_answers)
+        print('количество неверных ответов -', number_incorrect_answers)
         number_correct_answers = 0
-        number_incorrect_answers =0
+        number_incorrect_answers = 0
         repit_quiz = input('начать снова - Y, выход - ENTER:')
     print('До встречи!!!')
 
+
 def my_bank_account():
+    FILE_BUDGET = 'budget.data'
+    FILE_HISTORY = 'history_purchase.json'
     budget = 0
     history = []
+
+    def print_history():
+        for item, cost in history:
+            print(f'{item}:\t {cost} руб.')
+
+    if os.path.exists(FILE_BUDGET):
+        with open(FILE_BUDGET, 'r') as f:
+            budget = int(f.read())
+
+    if os.path.exists(FILE_HISTORY):
+        with open(FILE_HISTORY, 'r') as h:
+            history = json.load(h)
+            print('Ваши предыдущие покупки:')
+            print_history()
+
     def purchase(budget):
         sum = int(input('Введите стоимость покупки: '))
         if sum > budget:
@@ -97,25 +117,33 @@ def my_bank_account():
             name = input('Введите название покупки: ')
             history.append((name, sum))
         return budget
+
     while True:
+        print(f'Ваш счет: {budget}')
+        print('-' * 100)
         print('1. пополнение счета')
         print('2. покупка')
         print('3. история покупок')
         print('4. выход')
-        print(f'Ваш счет: {budget}')
         choice = input('Выберите пункт меню: ')
+        print('-' * 100)
         if choice == '1':
             sum = int(input('Введите сумму для пополнения: '))
             budget += sum
         elif choice == '2':
             budget = purchase(budget)
         elif choice == '3':
-            for item, cost in history:
-                print(f'{item}:\t {cost} руб.')
+            print('История покупок:')
+            print_history()
         elif choice == '4':
+            with open(FILE_BUDGET, 'w') as f:
+                f.write(str(budget))
+            with open(FILE_HISTORY, 'w') as h:
+                json.dump(history, h)
             break
         else:
             print('Неверный пункт меню')
+
 
 def separator(count=30):
     """
@@ -124,6 +152,7 @@ def separator(count=30):
     :return: красивый разделитель
     """
     return '*' * count
+
 
 def date_to_str(date):
     """
@@ -135,3 +164,27 @@ def date_to_str(date):
     result = f'{days[day]} {months[month]} {year} года'
     return result
 
+
+def save_workdir_to_file():
+    '''
+    Функция сохраняет содержимое рабочей директории в файл в формате:
+        files: victory.py, bill.py, main.py
+        dirs: modules, packages
+    :return:
+    '''
+    list_dir = []
+    list_file = []
+    list_file_dir = os.listdir()
+    for item in list_file_dir:
+        if os.path.isfile(item):
+            list_file.append(item)
+        elif os.path.isdir(item):
+            list_dir.append(item)
+    with open('listdir.txt', 'w') as f:
+        f.write('files: ')
+        for item in list_file:
+            f.write(f'{item}, ')
+        f.write('\n')
+        f.write('dirs: ')
+        for item in list_dir:
+            f.write(f'{item}, ')

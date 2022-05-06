@@ -56,16 +56,12 @@ while True:
             print('Сохранено в файл \"listdir.txt\"')
     elif choice == '6':  # Посмотреть только папки
         print('*** Папки в директории ***')
-        list_dir = os.listdir()
-        for item in list_dir:
-            if os.path.isdir(item):
-                print(item)
+        result_list = [item for item in os.listdir() if os.path.isdir(item)]
+        print('\n'.join(result_list))
     elif choice == '7':  # Посмотреть только файлы
         print('*** Файлы в директории ***')
-        list_dir = os.listdir()
-        for item in list_dir:
-            if os.path.isfile(item):
-                print(item)
+        result_list = [item for item in os.listdir() if os.path.isfile(item)]
+        print('\n'.join(result_list))
     elif choice == '8':  # Просмотр информации об операционной системе
         print(sys.platform)
     elif choice == '9':  # Создатель программы

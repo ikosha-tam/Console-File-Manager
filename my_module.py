@@ -109,14 +109,22 @@ def my_bank_account():
             print_history()
 
     def purchase(budget):
-        sum = int(input('Введите стоимость покупки: '))
-        if sum > budget:
-            print('Недостаточно средств')
+        try:
+            sum = int(input('Введите стоимость покупки: '))
+        except:
+            # Этот блок срабатывает если было исключение
+            print('Вы ввели не число')
+            print('Введите верное число')
+            return budget
         else:
-            budget -= sum
-            name = input('Введите название покупки: ')
-            history.append((name, sum))
-        return budget
+            if sum > budget:
+                print('Недостаточно средств')
+            else:
+                budget -= sum
+                name = input('Введите название покупки: ')
+                history.append((name, sum))
+            return budget
+
 
     while True:
         print(f'Ваш счет: {budget}')
@@ -175,6 +183,7 @@ def save_workdir_to_file():
     list_dir = []
     list_file = []
     list_file_dir = os.listdir()
+
     for item in list_file_dir:
         if os.path.isfile(item):
             list_file.append(item)

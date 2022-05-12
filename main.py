@@ -23,9 +23,9 @@ while True:
     print('-' * 100)
     if choice == '1':  # Создать папку
         name_dir = input('Имя новой папки: ')
-        if not os.path.exists(name_dir):
+        try:
             os.mkdir(name_dir)
-        else:
+        except FileExistsError:
             print('Папка уже существует!')
     elif choice == '2':  # Удалить (файл/папку)
         name_file_dir = input('Имя файл/папки для удаления: ')
@@ -36,7 +36,7 @@ while True:
             print("Файл не существует!")
         if os.path.isdir(name_file_dir):
             shutil.rmtree(name_file_dir)
-            print("Успешно")
+            print('Успешно')
         else:
             print("Папка не существует!")
     elif choice == '3':  # Копировать (файл/папку)
@@ -48,24 +48,19 @@ while True:
             shutil.copytree(name, name_new)
     elif choice == '4':  # Просмотр содержимого рабочей директории'
         print('*** Cодержимого рабочей директории ***')
-        list_dir = os.listdir()
-        for item in list_dir:
-            print(item)
+        result_list = [item for item in os.listdir()]
+        print('\n'.join(result_list))
     elif choice == '5':  # Сохранить содержимое рабочей директории в файл
             my_module.save_workdir_to_file()
             print('Сохранено в файл \"listdir.txt\"')
     elif choice == '6':  # Посмотреть только папки
         print('*** Папки в директории ***')
-        list_dir = os.listdir()
-        for item in list_dir:
-            if os.path.isdir(item):
-                print(item)
+        result_list = [item for item in os.listdir() if os.path.isdir(item)]
+        print('\n'.join(result_list))
     elif choice == '7':  # Посмотреть только файлы
         print('*** Файлы в директории ***')
-        list_dir = os.listdir()
-        for item in list_dir:
-            if os.path.isfile(item):
-                print(item)
+        result_list = [item for item in os.listdir() if os.path.isfile(item)]
+        print('\n'.join(result_list))
     elif choice == '8':  # Просмотр информации об операционной системе
         print(sys.platform)
     elif choice == '9':  # Создатель программы
